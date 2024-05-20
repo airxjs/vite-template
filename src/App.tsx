@@ -1,14 +1,14 @@
-import { createSignal } from 'airx'
+import { Signal } from "signal-polyfill";
 
-import viteLogo from '/vite.svg'
-import './App.css'
+import viteLogo from "/vite.svg";
+import "./style.css";
+
+const count = new Signal.State(0);
 
 function App() {
-  const count = createSignal(0)
-
   const handleClick = () => {
-    count.value += 1
-  }
+    count.set(count.get() + 1);
+  };
 
   return () => (
     <>
@@ -17,20 +17,12 @@ function App() {
           <img src={viteLogo} class="logo" alt="Vite logo" />
         </a>
       </div>
-      <h1>Vite + Airx</h1>
+      <h1>Vite + Airx + Signal</h1>
       <div class="card">
-        <button onClick={handleClick}>
-          count is {count.value}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <button onClick={handleClick}>count is {count.get()}</button>
       </div>
-      <p class="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
